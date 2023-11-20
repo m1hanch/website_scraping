@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "web-hw9"
+version = "0.1.0"
+description = ""
+authors = ["m1hanch <misha5264@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+scrapy = "^2.11.0"
+dateparser = "^1.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
