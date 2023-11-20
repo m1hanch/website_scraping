@@ -36,7 +36,7 @@ class DataPipeline:
         with open('quotes.json', 'w', encoding='utf-8') as fd:
             json.dump(self.quotes, fd, ensure_ascii=False, indent=4)
         with open('authors.json', 'w', encoding='utf-8') as fd:
-            json.dump(self.quotes, fd, ensure_ascii=False, indent=4)
+            json.dump(self.authors, fd, ensure_ascii=False, indent=4)
 
 
 class QuotesSpider(scrapy.Spider):
@@ -60,11 +60,11 @@ class QuotesSpider(scrapy.Spider):
 
     @classmethod
     def parse_author(cls, response: Response, **kwargs: Any) -> Any:
-        content = response.xpath("/html//div[@class='author_details']")
+        content = response.xpath("/html//div[@class='author-details']")
         fullname = content.xpath("h3[@class='author-title']/text()").get().strip()
         born_date = content.xpath("p/span[@class='author-born-date']/text()").get().strip()
         born_location = content.xpath("p/span[@class='author-born-location']/text()").get().strip()
-        description = content.xpath("div[@class='author-description']").get().strip()
+        description = content.xpath("div[@class='author-description']/text()").get().strip()
         yield AuthorItem(fullname=fullname, born_date=born_date, born_location=born_location, description=description)
 
 
